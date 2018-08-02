@@ -1,7 +1,5 @@
 package com.hongdd.spark.batch
 
-import java.io.{File, FileInputStream}
-import java.util.Properties
 
 import com.hongdd.spark.util.PropertiesUtil
 import org.apache.log4j.{Level, Logger}
@@ -9,7 +7,6 @@ import org.apache.spark.sql.SparkSession
 import org.apache.spark.sql.streaming.OutputMode
 
 object WordCount {
-
 
   def main(args: Array[String]): Unit = {
 //    val properties = new Properties()
@@ -38,7 +35,8 @@ object WordCount {
       .option("subscribe", topic)
       .load()
 
-    val words = lines.selectExpr("cast(value as string)").as[String].flatMap(_.split(" "))
+    val words = lines.selectExpr("cast(value as string)")
+      .as[String].flatMap(_.split(" "))
     val wordCount = words.groupBy("value").count()
 
     // no trigger. as soon as previous complete

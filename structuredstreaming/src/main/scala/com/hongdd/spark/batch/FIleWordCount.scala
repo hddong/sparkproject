@@ -1,11 +1,11 @@
-package com.hongdd.spark.continuous
+package com.hongdd.spark.batch
 
 import com.hongdd.spark.util.PropertiesUtil
 import org.apache.log4j.{Level, Logger}
 import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.streaming.Trigger
+import org.apache.spark.sql.types.{StructType, TimestampType}
 
-object wordsOutput {
+object FIleWordCount {
   def main(args: Array[String]): Unit = {
     val properties = PropertiesUtil.getKafkaProperties(this)
     val bootstrap = properties.getProperty("bootstrap")
@@ -20,21 +20,14 @@ object wordsOutput {
 
     import spark.implicits._
 
-    val lines = spark.readStream
-      .format("kafka")
-      .option("kafka.bootstrap.servers", bootstrap)
-      .option("subscribe", topic)
-      .load()
+    val userSchema = StructType.fromDDL("name string, age int")
+    val lines = spark.readStream.option("sep", ",")
+      .schema(userSchema)
+      .csv("d:/tmp2")
 
-    val query = lines.selectExpr("cast(key as string)", "cast(value as string)", "cast(offset as long)")
-      .as[(String, String, Long)]
-      .writeStream
-      .format("kafka")
+    val query = lines.writeStream
       .outputMode("append")
-      .option("kafka.bootstrap.servers", bootstrap)
-      .option("topic", "result")
-      .option("checkpointLocation", "./src/main/checkpoint")
-      .trigger(Trigger.Continuous("1 seconds"))
+      .format("console")
       .start()
 
     query.awaitTermination()

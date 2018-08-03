@@ -1,8 +1,6 @@
 package com.hongdd.spark.util
 
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig
-import org.apache.log4j.Logger
-import org.apache.log4j.spi.LoggerFactory
 import redis.clients.jedis.JedisPool
 
 /**

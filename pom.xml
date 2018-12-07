@@ -11,8 +11,15 @@
     <modules>
         <module>structuredstreaming</module>
         <module>streaming</module>
+        <module>sparksql</module>
+        <module>sparkml</module>
+        <module>spark-hbase</module>
+        <module>spark-java</module>
     </modules>
     <properties>
         <spark.version>2.3.0</spark.version>
+        <hadoop.version>3.1.0</hadoop.version>
+        <java.version>1.8</java.version>
+        <hbase.version>2.1.1</hbase.version>
     </properties>
 </project>

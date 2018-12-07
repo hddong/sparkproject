@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="structuredstreaming:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/structuredstreaming_jar</output-path>
+    <root id="archive" name="structuredstreaming.jar">
+      <element id="module-output" name="structuredstreaming" />
+    </root>
+  </artifact>
+</component>

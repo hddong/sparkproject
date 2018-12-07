@@ -176,7 +176,8 @@ object ALSFilmRecommend {
     //保存模型，模型保存路劲为
     model.save(spark.sparkContext,params.output)
     println("模型保存成功，保存路劲为："+params.output)
-
+    // 相对用户推荐
+    // model.recommendProducts(1, 5)
     spark.stop()
   }
 

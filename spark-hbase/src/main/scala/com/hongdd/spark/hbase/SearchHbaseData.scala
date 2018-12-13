@@ -8,7 +8,7 @@ import org.apache.hadoop.hbase.util.Bytes
 import org.apache.spark.SparkConf
 import org.apache.spark.sql.SparkSession
 
-object SearchHbaseDataWithKerberos {
+object SearchHbaseData {
   def main(args: Array[String]): Unit = {
     val conf = new SparkConf().setAppName("SearchHbaseDataWithKerberosByYarn").setMaster("local")
     val spark = SparkSession.builder().config(conf).getOrCreate()
@@ -18,7 +18,9 @@ object SearchHbaseDataWithKerberos {
     val config = HBaseConfiguration.create()
     val tableName = "test"
 
-    config.set("hbase.zookeeper.quorum","docker1.cmss.com,docker2.cmss.com,docker3.cmss.com")
+    config.set("hbase.zookeeper.quorum",
+      Option(conf.get("hbase.zookeeper.quorum")).getOrElse("docker1.cmss.com,docker2.cmss.com,docker3.cmss.com"))
+//    config.set("hbase.zookeeper.quorum","docker1.cmss.com,docker2.cmss.com,docker3.cmss.com")
     config.set("zookeeper.znode.parent", "/hbase-unsecure")
     config.set("hbase.zookeeper.property.clientPort","2181")
 

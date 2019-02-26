@@ -18,8 +18,7 @@ object SearchHbaseData {
     val config = HBaseConfiguration.create()
     val tableName = "test"
 
-    config.set("hbase.zookeeper.quorum",
-      Option(conf.get("hbase.zookeeper.quorum")).getOrElse("docker1.cmss.com,docker2.cmss.com,docker3.cmss.com"))
+    config.set("hbase.zookeeper.quorum","docker1.cmss.com,docker2.cmss.com,docker3.cmss.com")
 //    config.set("hbase.zookeeper.quorum","docker1.cmss.com,docker2.cmss.com,docker3.cmss.com")
     config.set("zookeeper.znode.parent", "/hbase-unsecure")
     config.set("hbase.zookeeper.property.clientPort","2181")

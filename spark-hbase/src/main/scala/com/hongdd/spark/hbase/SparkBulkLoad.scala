@@ -19,7 +19,7 @@ object SparkBulkLoad {
     val conf = HBaseConfiguration.create()
 
     val tableName = "test"
-    val table = new HTable(conf, tableName)
+//    val table = new HTable(conf, tableName)
 
     conf.set(TableInputFormat.INPUT_TABLE,tableName)
     val job = Job.getInstance()
@@ -29,7 +29,7 @@ object SparkBulkLoad {
 
     job.setMapOutputKeyClass (classOf[ImmutableBytesWritable])
     job.setMapOutputValueClass (classOf[KeyValue])
-    HFileOutputFormat2.configureIncrementalLoad(job, table, conn.getRegionLocator(TableName.valueOf(tableName)))
+//    HFileOutputFormat2.configureIncrementalLoad(job, table, conn.getRegionLocator(TableName.valueOf(tableName)))
 
     val num = sc.parallelize(1 to 10)
     val rdd = num.map(x=>{

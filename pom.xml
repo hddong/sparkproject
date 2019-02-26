@@ -15,6 +15,7 @@
         <module>sparkml</module>
         <module>spark-hbase</module>
         <module>spark-java</module>
+        <module>sparkdeveloperapi</module>
     </modules>
     <properties>
         <spark.version>2.3.0</spark.version>

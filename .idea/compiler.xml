@@ -6,6 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="sparkdeveloperapi" />
         <module name="sparkhbase" />
         <module name="sparkjava" />
         <module name="sparkml" />
